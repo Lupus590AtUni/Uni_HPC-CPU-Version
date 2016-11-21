@@ -2,7 +2,8 @@
 
 class NA_Timer
 {
-private:
+//private:
+public:
 	unsigned int duration;
 	unsigned int start;
 public:

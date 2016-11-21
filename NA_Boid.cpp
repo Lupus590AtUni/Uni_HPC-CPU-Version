@@ -10,7 +10,17 @@ void NA_Boid::update()
 {
 	extern vector<NA_Boid> boidList;
 	//TODO: find naigboors
-	//boidList
+	NA_Vector sumVelocity;
+	for (int i = 0; i < BOID_MAX; i++)
+	{
+		sumVelocity.x = boidList[i].currentVelocity.x + sumVelocity.x;
+		sumVelocity.y = boidList[i].currentVelocity.y + sumVelocity.y;
+	}
+
+	sumVelocity.x = sumVelocity.x / (BOID_MAX - 1);
+	sumVelocity.y = sumVelocity.y / (BOID_MAX - 1);
+
+	newVelocity = sumVelocity;
 
 	//TODO: alignment
 
