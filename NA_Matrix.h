@@ -1,12 +1,11 @@
 #pragma once
-#include "stdafx.h"
 
 class NA_Vector;
 class NA_Matrix
 {
 public:
 
-  static enum types { identity = 0, translate, rotateX, rotateY, rotateZ, scale, shearX, shearY, shearZ};
+	enum types { identity = 0, translate, rotateX, rotateY, rotateZ, scale, shearX, shearY, shearZ};
 
 	float matrix[4][4];//was private but gets and sets slow things down
 

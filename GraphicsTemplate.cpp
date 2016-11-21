@@ -34,6 +34,19 @@ void renderScene()
 void update()
 {
 	// add any update code here...
+	static NA_Timer fpsCap;//wait if FPS is too high (if boids move too fast)
+	fpsCap.restart();
+
+
+	//TODO: update all boids
+
+	
+
+
+
+
+	fpsCap.setDuration(int(floor(1000/FPS)));
+	fpsCap.wait();
 
 	// always re-render the scene..
 	renderScene();

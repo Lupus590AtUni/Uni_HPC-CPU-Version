@@ -11,6 +11,7 @@ private:
 public:
 	NA_Boid();
 	void update();
+	void postUpdate();//keeps all boids using same data
 	NA_Vector getVelocity();
 	NA_Vector getposition();
 };

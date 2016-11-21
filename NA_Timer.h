@@ -12,5 +12,6 @@ public:
 	void setDuration(int d);
 	bool hasElapsed();
 	void restart();
+	void wait(); //pause until timer elapses
 };
 

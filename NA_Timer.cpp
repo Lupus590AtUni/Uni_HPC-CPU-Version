@@ -1,5 +1,6 @@
 #include "NA_Timer.h"
 #include <time.h>
+#include "stdafx.h"
 
 
 NA_Timer::NA_Timer(void)
@@ -34,4 +35,12 @@ bool NA_Timer::hasElapsed()
 void NA_Timer::restart()
 {
 	start = time(NULL);
+}
+
+void NA_Timer::wait()
+{
+	while (!hasElapsed())
+	{
+		//should probably tell the os that we are waiting
+	}
 }

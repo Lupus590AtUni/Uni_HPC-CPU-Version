@@ -2,6 +2,7 @@
 #include <math.h>//used to generate lookup tables when object is constructed
 #include <random>
 #include <time.h>
+#include "stdafx.h"
 
 const float NA_MathsLib::PI = 3.14f;//this is a stupid compiler rule in my opinion
 

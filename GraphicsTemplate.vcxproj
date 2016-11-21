@@ -88,7 +88,6 @@
     <ClCompile Include="cRenderClass.cpp" />
     <ClCompile Include="GraphicsTemplate.cpp" />
     <ClCompile Include="NA_Boid.cpp" />
-    <ClCompile Include="NA_GU.cpp" />
     <ClCompile Include="NA_LinkedListNode.cpp" />
     <ClCompile Include="NA_LookupTable.cpp" />
     <ClCompile Include="NA_MathsLib.cpp" />
@@ -97,6 +96,7 @@
     <ClCompile Include="NA_Return.cpp" />
     <ClCompile Include="NA_Stack.cpp" />
     <ClCompile Include="NA_Timer.cpp" />
+    <ClCompile Include="NA_Vector.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -107,7 +107,6 @@
     <ClInclude Include="globals.h" />
     <ClInclude Include="NA_Boid.h" />
     <ClInclude Include="NA_common_includes.h" />
-    <ClInclude Include="NA_GU.h" />
     <ClInclude Include="NA_LinkedListNode.h" />
     <ClInclude Include="NA_LookupTable.h" />
     <ClInclude Include="NA_MathsLib.h" />
@@ -116,6 +115,7 @@
     <ClInclude Include="NA_Return.h" />
     <ClInclude Include="NA_Stack.h" />
     <ClInclude Include="NA_Timer.h" />
+    <ClInclude Include="NA_Vector.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

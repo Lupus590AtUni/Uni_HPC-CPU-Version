@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "NA_Matrix.h"
 #include "NA_Vector.h"
+#include "stdafx.h"
 #include <iostream>
 using std::cout;
 
