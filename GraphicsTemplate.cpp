@@ -64,6 +64,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	// good place for one-off initialisations and objects creation..
 
+	//TODO: make all boids
+
+
 	// enter game loop..
 	graphics.loop();	
 
