@@ -4,15 +4,17 @@
 
 class NA_Boid
 {
-private:
+public:
+	//should be private, but lazy
 	NA_Vector position;
 	NA_Vector currentVelocity;
 	NA_Vector newVelocity;
-public:
+
 	NA_Boid();
 	void update();
 	void postUpdate();//keeps all boids using same data
-	NA_Vector getVelocity();
-	NA_Vector getposition();
+	//NA_Vector getVelocity();
+	//NA_Vector getposition();
+	void draw();
 };
 

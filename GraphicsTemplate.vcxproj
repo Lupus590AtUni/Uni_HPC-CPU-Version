@@ -89,7 +89,6 @@
     <ClCompile Include="GraphicsTemplate.cpp" />
     <ClCompile Include="NA_Boid.cpp" />
     <ClCompile Include="NA_LinkedListNode.cpp" />
-    <ClCompile Include="NA_LookupTable.cpp" />
     <ClCompile Include="NA_MathsLib.cpp" />
     <ClCompile Include="NA_Matrix.cpp" />
     <ClCompile Include="NA_Queue.cpp" />
@@ -108,7 +107,6 @@
     <ClInclude Include="NA_Boid.h" />
     <ClInclude Include="NA_common_includes.h" />
     <ClInclude Include="NA_LinkedListNode.h" />
-    <ClInclude Include="NA_LookupTable.h" />
     <ClInclude Include="NA_MathsLib.h" />
     <ClInclude Include="NA_Matrix.h" />
     <ClInclude Include="NA_Queue.h" />

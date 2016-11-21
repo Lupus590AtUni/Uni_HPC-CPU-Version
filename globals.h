@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#pragma once
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // externals 
@@ -15,7 +16,7 @@ const int SCREEN_HEIGHT = 500;
 
 const int FPS = 60;//anything bigger than 60 fps is pointless on most machines
 
-vector<NA_Boid> boidList; //not really a list
+const int BOID_MAX = 20;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // structures 
