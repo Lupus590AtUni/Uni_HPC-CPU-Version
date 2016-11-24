@@ -36,8 +36,8 @@ void renderScene()
 void update()
 {
 
-	renderScene();
-	cout << "first render done\n";
+	//renderScene();
+	//cout << "first render done\n";
 	// add any update code here...
 	static NA_Timer fpsCap;//wait if FPS is too high (if boids move too fast)
 	fpsCap.restart();
@@ -58,11 +58,11 @@ void update()
 
 	//cout << "updates done, waiting\n";
 	fpsCap.setDuration(1/FPS_MAX);
-	fpsCap.wait();
+	//fpsCap.wait();
 
 	// always re-render the scene..
 	renderScene();
-	cout << " post render done\n";
+	//cout << " post render done\n";
 }
 
 

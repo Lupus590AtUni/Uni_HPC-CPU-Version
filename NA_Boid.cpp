@@ -13,7 +13,7 @@ void NA_Boid::update()
 
 
 
-	/*
+	
 	//alignment - align self to average heading
 	//calc sum velocity
 	NA_Vector sumVelocity;
@@ -26,20 +26,22 @@ void NA_Boid::update()
 	sumVelocity.x = sumVelocity.x / (BOID_MAX);
 	sumVelocity.y = sumVelocity.y / (BOID_MAX);
 
+	//cout << "average vel: X: " << sumVelocity.x << " Y:" << sumVelocity.y << "\n";
+
 	newVelocity = sumVelocity; //TODO: maybe should change this gradually
-	*/
+	
 
 
 
 
-
+	/*
 	//cohesion - move towards average position
 	//calc sum position
 	NA_Vector sumPosition;
 	for (int i = 0; i < BOID_MAX; i++)
 	{
-		sumPosition.x = boidList[i].position.x + position.x;
-		sumPosition.y = boidList[i].position.y + position.y;
+		sumPosition.x = boidList[i].position.x + sumPosition.x;
+		sumPosition.y = boidList[i].position.y + sumPosition.y;
 	}
 	//convert to average
 	sumPosition.x = sumPosition.x / (BOID_MAX);
@@ -48,7 +50,7 @@ void NA_Boid::update()
 	cout << "average pos: X: " << sumPosition.x << " Y:" << sumPosition.y << "\n";
 
 	newVelocity = NA_Vector::twoPointsIntoVector(position, sumPosition); //modify velocity to head towards the average position
-
+	*/
 
 
 
@@ -60,8 +62,26 @@ void NA_Boid::update()
 
 void NA_Boid::postUpdate()
 {
+	
 	currentVelocity = newVelocity;
 	newVelocity = NA_Vector();
+
+	//move
+	position.x = position.x + currentVelocity.x;
+	position.y = position.y + currentVelocity.y;
+
+
+	//screen wrap
+	if (position.x < 0)
+		position.x = SCREEN_WIDTH;
+	if (position.x > SCREEN_WIDTH)
+		position.x = 0;
+
+	if (position.y < 0)
+		position.y = SCREEN_HEIGHT;
+	if (position.y > SCREEN_HEIGHT)
+		position.y = 0;
+
 }
 
 /*NA_Vector NA_Boid::getVelocity()
