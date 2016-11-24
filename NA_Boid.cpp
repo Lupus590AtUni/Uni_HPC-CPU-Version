@@ -59,6 +59,14 @@ void NA_Boid::update()
 	//TODO: separation
 	for (int i = 0; i < BOID_MAX; i++)
 	{
+		if (&boidList[i] != this) //ignore self
+		{
+			NA_Vector d = NA_Vector::twoPointsIntoVector(boidList[i].position, position);
+			if (d.length() < BOID_RESPECT_DIST)
+			{
+				newVelocity = d;
+			}
+		}
 	}
 
 

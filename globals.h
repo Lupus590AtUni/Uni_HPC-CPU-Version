@@ -19,6 +19,7 @@ const int FPS_MAX = 60;//anything bigger than 60 fps is pointless on most machin
 const int BOID_MAX = 5;
 const float BOID_SPEED_MAX = 5.0f;
 const float BOID_RESPECT_DIST = 5.0f;
+const float BOID_ROTATE_MAX = 5.0f;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // structures 
