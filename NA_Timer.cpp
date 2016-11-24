@@ -3,13 +3,7 @@
 #include "stdafx.h"
 
 
-NA_Timer::NA_Timer(void)
-{
-	duration = 0;
-	start = time(NULL);
-}
-
-NA_Timer::NA_Timer(int d)
+NA_Timer::NA_Timer(double d)
 {
 	duration = d;
 	start = time(NULL);
@@ -19,7 +13,7 @@ NA_Timer::~NA_Timer(void)
 {
 }
 
-void NA_Timer::setDuration(int d)
+void NA_Timer::setDuration(double d)
 {
 	duration = d;
 }

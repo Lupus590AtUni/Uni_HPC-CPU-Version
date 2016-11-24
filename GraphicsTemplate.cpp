@@ -56,15 +56,9 @@ void update()
 
 
 
-	cout << "updates done, waiting\n";
-	//fpsCap.setDuration(int(floor(1000/FPS)));
-	fpsCap.setDuration(100*5);
-	//fpsCap.wait();
-	
-	while (!fpsCap.hasElapsed())
-	{
-		cout << "count down" << difftime(time(NULL), fpsCap.start) - fpsCap.duration << "\n";
-	}
+	//cout << "updates done, waiting\n";
+	fpsCap.setDuration(1/FPS_MAX);
+	fpsCap.wait();
 
 	// always re-render the scene..
 	renderScene();

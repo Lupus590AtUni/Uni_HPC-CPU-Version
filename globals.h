@@ -14,9 +14,9 @@ extern void update();
 const int SCREEN_WIDTH	= 500;
 const int SCREEN_HEIGHT = 500;
 
-const int FPS = 60;//anything bigger than 60 fps is pointless on most machines
+const int FPS_MAX = 60;//anything bigger than 60 fps is pointless on most machines as the monitor won't take more
 
-const int BOID_MAX = 20;
+const int BOID_MAX = 5;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // structures 

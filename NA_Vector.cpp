@@ -60,12 +60,12 @@ float NA_Vector::dot(NA_Vector & v1)
   return x*v1.x + y*v1.y + z*v1.z + w*v1.w;
 }
 
-NA_Vector* NA_Vector::twoPointsIntoVector(NA_Vector &startPoint, NA_Vector &endPoint)
+NA_Vector NA_Vector::twoPointsIntoVector(NA_Vector &startPoint, NA_Vector &endPoint)
 {
-	NA_Vector* v = new NA_Vector;
-	v->x = (endPoint.x - startPoint.x);
-	v->y = (endPoint.y - startPoint.y);
-	v->z = (endPoint.z - startPoint.z);
-	v->w = (endPoint.w - startPoint.w);
+	NA_Vector v;
+	v.x = (endPoint.x - startPoint.x);
+	v.y = (endPoint.y - startPoint.y);
+	v.z = (endPoint.z - startPoint.z);
+	v.w = (endPoint.w - startPoint.w);
 	return v;
 }
