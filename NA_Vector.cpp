@@ -20,7 +20,7 @@ NA_Vector::NA_Vector(const NA_Vector & copy)
 	this->w = copy.w;
 }
 
-void NA_Vector::Scale(float s)
+void NA_Vector::scale(float s)
 {
 	x= s*x;
 	y= s*y;
@@ -28,7 +28,7 @@ void NA_Vector::Scale(float s)
   w= s*w;
 }
 
-void NA_Vector::Add(NA_Vector & v1)
+void NA_Vector::add(NA_Vector & v1)
 {
 	x= x + v1.x;
 	y= y + v1.y;
@@ -39,10 +39,10 @@ void NA_Vector::Add(NA_Vector & v1)
 
 void NA_Vector::normalise(void)
 {
-	float length = sqrt(x*x + y*y + z*z);
-	x = x/length;
-	y = y/length;
-	z = z/length;
+	float l = length();
+	x = x/l;
+	y = y/l;
+	z = z/l;
 	//correctW();
 }
 
@@ -58,6 +58,11 @@ float NA_Vector::dist(NA_Vector & v1)
 float NA_Vector::dot(NA_Vector & v1)
 {
   return x*v1.x + y*v1.y + z*v1.z + w*v1.w;
+}
+
+float NA_Vector::length()
+{
+	return sqrt(x*x + y*y + z*z);
 }
 
 NA_Vector NA_Vector::twoPointsIntoVector(NA_Vector &startPoint, NA_Vector &endPoint)

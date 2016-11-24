@@ -19,8 +19,8 @@ void NA_Boid::update()
 	NA_Vector sumVelocity;
 	for (int i = 0; i < BOID_MAX; i++)
 	{
-		sumVelocity.x = boidList[i].currentVelocity.x + sumVelocity.x;
-		sumVelocity.y = boidList[i].currentVelocity.y + sumVelocity.y;
+		sumVelocity.x += boidList[i].currentVelocity.x;
+		sumVelocity.y += boidList[i].currentVelocity.y;
 	}
 	//convert to average
 	sumVelocity.x = sumVelocity.x / (BOID_MAX);
@@ -34,29 +34,38 @@ void NA_Boid::update()
 
 
 
-	/*
+	
 	//cohesion - move towards average position
 	//calc sum position
 	NA_Vector sumPosition;
 	for (int i = 0; i < BOID_MAX; i++)
 	{
-		sumPosition.x = boidList[i].position.x + sumPosition.x;
-		sumPosition.y = boidList[i].position.y + sumPosition.y;
+		sumPosition.x += boidList[i].position.x;
+		sumPosition.y += boidList[i].position.y;
 	}
 	//convert to average
 	sumPosition.x = sumPosition.x / (BOID_MAX);
 	sumPosition.y = sumPosition.y / (BOID_MAX);
 
-	cout << "average pos: X: " << sumPosition.x << " Y:" << sumPosition.y << "\n";
+	//cout << "average pos: X: " << sumPosition.x << " Y:" << sumPosition.y << "\n";
 
+	//TODO: if i'm close already maybe i should go slower
 	newVelocity = NA_Vector::twoPointsIntoVector(position, sumPosition); //modify velocity to head towards the average position
-	*/
-
+	
 
 
 
 
 	//TODO: separation
+	for (int i = 0; i < BOID_MAX; i++)
+	{
+	}
+
+
+
+
+
+	//TODO: bonus, avoid mouse
 
 }
 
@@ -64,11 +73,19 @@ void NA_Boid::postUpdate()
 {
 	
 	currentVelocity = newVelocity;
-	newVelocity = NA_Vector();
+	newVelocity = NA_Vector();//prepare vector for next update
+
+	//boids should not break the speed limit
+	if (currentVelocity.length() > BOID_SPEED_MAX)
+	currentVelocity.normalise();
+	currentVelocity.scale(BOID_SPEED_MAX);
+
+	//if (currentVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
+	
 
 	//move
-	position.x = position.x + currentVelocity.x;
-	position.y = position.y + currentVelocity.y;
+	position.x += currentVelocity.x;
+	position.y += currentVelocity.y;
 
 
 	//screen wrap
@@ -81,6 +98,7 @@ void NA_Boid::postUpdate()
 		position.y = SCREEN_HEIGHT;
 	if (position.y > SCREEN_HEIGHT)
 		position.y = 0;
+
 
 }
 

@@ -35,13 +35,20 @@ void renderScene()
 //////////////////////////////////////////////////////////////////////////////////////////
 void update()
 {
+	static bool first = true;
+
+	if (first)
+		renderScene();
+	first = false;
 
 	//renderScene();
 	//cout << "first render done\n";
 	// add any update code here...
 	static NA_Timer fpsCap;//wait if FPS is too high (if boids move too fast)
 	fpsCap.restart();
-
+	fpsCap.setDuration(1 / FPS_MAX);
+	if (first)
+		fpsCap.wait();
 
 	for (int i = 0; i < BOID_MAX; i++)
 	{
@@ -57,8 +64,8 @@ void update()
 
 
 	//cout << "updates done, waiting\n";
-	fpsCap.setDuration(1/FPS_MAX);
-	//fpsCap.wait();
+	
+	fpsCap.wait();
 
 	// always re-render the scene..
 	renderScene();
@@ -85,8 +92,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		temp.position.x = na_maths.dice(SCREEN_WIDTH);
 		temp.position.y = na_maths.dice(SCREEN_HEIGHT);
 
-		temp.currentVelocity.x = na_maths.dice(-10,10);
-		temp.currentVelocity.y = na_maths.dice(-10, 10);
+		temp.currentVelocity.x = float(na_maths.dice(-100,100))/100.0f;
+		temp.currentVelocity.y = float(na_maths.dice(-100, 100))/100.0f;
 
 		boidList.push_back(temp);
 
