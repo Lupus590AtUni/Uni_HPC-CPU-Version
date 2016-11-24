@@ -64,8 +64,11 @@ void update()
 
 
 	//cout << "updates done, waiting\n";
+
+	extern void debugMouse();
+	//debugMouse();
 	
-	fpsCap.wait();
+	//fpsCap.wait();
 
 	// always re-render the scene..
 	renderScene();
@@ -91,6 +94,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		NA_Boid temp;
 		temp.position.x = na_maths.dice(SCREEN_WIDTH);
 		temp.position.y = na_maths.dice(SCREEN_HEIGHT);
+
+		//temp.position.x = 100.0f;
+		//temp.position.y = 100.0f;
 
 		temp.currentVelocity.x = float(na_maths.dice(-100,100))/100.0f;
 		temp.currentVelocity.y = float(na_maths.dice(-100, 100))/100.0f;

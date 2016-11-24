@@ -9,11 +9,13 @@ NA_Boid::NA_Boid()
 void NA_Boid::update()
 {
 	extern vector<NA_Boid> boidList;
+	extern NA_MathsLib na_maths;
+	extern cRenderClass graphics;
 	//TODO: find nearby boids and only consider them
 
 
 
-	
+	///*
 	//alignment - align self to average heading
 	//calc sum velocity
 	NA_Vector sumVelocity;
@@ -32,8 +34,8 @@ void NA_Boid::update()
 	
 
 
-
-
+	//*/
+	//*
 	
 	//cohesion - move towards average position
 	//calc sum position
@@ -50,11 +52,14 @@ void NA_Boid::update()
 	//cout << "average pos: X: " << sumPosition.x << " Y:" << sumPosition.y << "\n";
 
 	//TODO: if i'm close already maybe i should go slower
-	newVelocity = NA_Vector::twoPointsIntoVector(position, sumPosition); //modify velocity to head towards the average position
+	NA_Vector temp = NA_Vector::twoPointsIntoVector(position, sumPosition); //modify velocity to head towards the average position
 	
+	temp.scale(0.01f);
 
+	newVelocity.x += temp.x;
+	newVelocity.y += temp.y;
 
-
+	//*
 
 	//TODO: separation
 	for (int i = 0; i < BOID_MAX; i++)
@@ -68,12 +73,18 @@ void NA_Boid::update()
 			}
 		}
 	}
+	//*/
 
 
+	NA_Vector d = NA_Vector::twoPointsIntoVector(graphics.mousePos, position);
+	//cout << "mouse dist: " << d.length() << "\n";
+	if (d.length() < BOID_MOUSE_FEAR)
+	{
+		//cout << "AHHH A MOUSE!!!\n";
 
+		newVelocity = d;
 
-
-	//TODO: bonus, avoid mouse
+	}
 
 }
 

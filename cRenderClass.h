@@ -1,8 +1,11 @@
-
+#include "stdafx.h"
+#include "NA_Vector.h"
 
 class cRenderClass
 {
 public:
+
+	NA_Vector mousePos;
 
 	cRenderClass(const int, const int);
 	~cRenderClass();

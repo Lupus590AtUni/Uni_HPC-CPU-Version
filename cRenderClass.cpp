@@ -72,6 +72,9 @@ void cRenderClass::create(int argc, _TCHAR* argv[])
 	// set display callback for current window
 	glutDisplayFunc(renderScene);	
 
+	glutMotionFunc(mouse);
+	glutPassiveMotionFunc(mouse);
+
 	// set up the global idle callback
 	glutIdleFunc(update);
 }
@@ -179,4 +182,40 @@ void winReshapeFunc(GLint w, GLint h)
 		(GLsizei) SCREEN_WIDTH,	// viewport width
 		(GLsizei) SCREEN_HEIGHT	// viewport height
 	);
+}
+
+int mouseRawX, mouseRawY;
+
+
+void debugMouse()
+{
+	cout << "Mouse:\n";
+	cout << " raw pos : " << mouseRawX << ", " << mouseRawY << "\n";
+	cout << " adjusted pos : " << graphics.mousePos.x << ", " << graphics.mousePos.y << "\n";
+	
+	
+	//draw a dot under the mouse for debugging
+	graphics.setColour(0.0f, 0.0f, 1.0f);
+	graphics.setPointSize(3);
+	graphics.drawPixel(graphics.mousePos.x, graphics.mousePos.y);
+	graphics.setColour(1.0f, 0.0f, 0.0f);
+	graphics.setPointSize(1);
+	graphics.drawPixel(graphics.mousePos.x, graphics.mousePos.y);
+
+}
+
+void adjustMouse()
+{
+	graphics.mousePos.y = -graphics.mousePos.y + SCREEN_HEIGHT;
+}
+
+void mouse(int x, int y)
+{
+	mouseRawX = x;
+	mouseRawY = y;
+
+	graphics.mousePos.x = x;
+	graphics.mousePos.y = y;
+
+	adjustMouse();
 }
