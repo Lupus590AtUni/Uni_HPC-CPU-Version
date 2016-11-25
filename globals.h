@@ -8,6 +8,8 @@ extern void winReshapeFunc(GLint w, GLint h);
 extern void renderScene();
 extern void update();
 extern void mouse(int x, int y);
+extern void click(int button, int state, int x, int y);
+extern void key(unsigned char c, int x, int y);
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // constants 
@@ -22,6 +24,8 @@ const float BOID_SPEED_MAX = 5.0f;
 const float BOID_RESPECT_DIST = 25.0f; //boid to boid spacing
 const float BOID_ROTATE_MAX = 5.0f;
 const float BOID_MOUSE_FEAR = 50.0f; //boid distance from mouse
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // structures 

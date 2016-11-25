@@ -75,15 +75,17 @@ void NA_Boid::update()
 	}
 	//*/
 
-
-	NA_Vector d = NA_Vector::twoPointsIntoVector(graphics.mousePos, position);
-	//cout << "mouse dist: " << d.length() << "\n";
-	if (d.length() < BOID_MOUSE_FEAR)
+	if (graphics.mouseIsScary)
 	{
-		//cout << "AHHH A MOUSE!!!\n";
+		NA_Vector d = NA_Vector::twoPointsIntoVector(graphics.mousePos, position);
+		//cout << "mouse dist: " << d.length() << "\n";
+		if (d.length() < BOID_MOUSE_FEAR)
+		{
+			//cout << "AHHH A MOUSE!!!\n";
 
-		newVelocity = d;
+			newVelocity = d;
 
+		}
 	}
 
 }

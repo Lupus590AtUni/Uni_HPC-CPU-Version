@@ -72,6 +72,8 @@ void cRenderClass::create(int argc, _TCHAR* argv[])
 	// set display callback for current window
 	glutDisplayFunc(renderScene);	
 
+	glutMouseFunc(click);
+	glutKeyboardFunc(key);
 	glutMotionFunc(mouse);
 	glutPassiveMotionFunc(mouse);
 
@@ -218,4 +220,30 @@ void mouse(int x, int y)
 	graphics.mousePos.y = y;
 
 	adjustMouse();
+}
+
+void key(unsigned char c, int x, int y)
+{
+
+}
+
+void click(int button, int state, int x, int y)
+{
+	//cout << "click\n";
+	if (button == GLUT_LEFT_BUTTON)
+	{
+		//cout << "left mouse\n";
+		if (state == GLUT_DOWN)
+		{
+			//cout << "down\n";
+			graphics.mouseIsScary = true;
+			mouse(x, y);
+			//cout << "mouseIsScary " << mouseIsScary << "\n";
+		}
+		else
+		{
+			graphics.mouseIsScary = false;
+		}
+	}
+
 }

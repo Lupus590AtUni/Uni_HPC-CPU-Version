@@ -67,6 +67,7 @@ void update()
 
 	extern void debugMouse();
 	//debugMouse();
+	//cout << "mouse scary? " << graphics.mouseIsScary << "\n";
 	
 	//fpsCap.wait();
 

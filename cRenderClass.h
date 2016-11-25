@@ -5,6 +5,7 @@ class cRenderClass
 {
 public:
 
+	bool mouseIsScary = false;
 	NA_Vector mousePos;
 
 	cRenderClass(const int, const int);
