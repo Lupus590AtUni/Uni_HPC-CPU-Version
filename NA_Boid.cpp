@@ -99,6 +99,7 @@ void NA_Boid::postUpdate()
 {
 	
 	//TODO: enforce rotation limit
+	//need to find angle between vectors: http://stackoverflow.com/questions/14066933/direct-way-of-computing-clockwise-angle-between-2-vectors
 
 	currentVelocity = newVelocity;
 	newVelocity = NA_Vector();//prepare vector for next update
