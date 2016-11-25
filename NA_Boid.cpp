@@ -1,6 +1,17 @@
 #include "NA_Boid.h"
 #include "stdafx.h"
 
+//const 
+float BOID_SPEED_MAX = 2.0f;
+//const 
+float BOID_RESPECT_DIST = 25.0f; //boid to boid spacing
+//const 
+float BOID_ROTATE_MAX = 5.0f;
+//const 
+float BOID_MOUSE_FEAR = 50.0f; //boid distance from mouse
+//const
+float BOID_COHESION_WEIGHTING = 0.01f;
+
 NA_Boid::NA_Boid()
 {
 
@@ -15,7 +26,6 @@ void NA_Boid::update()
 
 
 
-	///*
 	//alignment - align self to average heading
 	//calc sum velocity
 	NA_Vector sumVelocity;
@@ -34,8 +44,6 @@ void NA_Boid::update()
 	
 
 
-	//*/
-	//*
 	
 	//cohesion - move towards average position
 	//calc sum position
@@ -49,19 +57,17 @@ void NA_Boid::update()
 	sumPosition.x = sumPosition.x / (BOID_MAX);
 	sumPosition.y = sumPosition.y / (BOID_MAX);
 
-	//cout << "average pos: X: " << sumPosition.x << " Y:" << sumPosition.y << "\n";
 
 	//TODO: if i'm close already maybe i should go slower
 	NA_Vector temp = NA_Vector::twoPointsIntoVector(position, sumPosition); //modify velocity to head towards the average position
 	
-	temp.scale(0.01f);
+	temp.scale(BOID_COHESION_WEIGHTING);
 
 	newVelocity.x += temp.x;
 	newVelocity.y += temp.y;
 
-	//*
 
-	//TODO: separation
+	//separation
 	for (int i = 0; i < BOID_MAX; i++)
 	{
 		if (&boidList[i] != this) //ignore self
@@ -69,11 +75,10 @@ void NA_Boid::update()
 			NA_Vector d = NA_Vector::twoPointsIntoVector(boidList[i].position, position);
 			if (d.length() < BOID_RESPECT_DIST)
 			{
-				newVelocity = d;
+				newVelocity = d; //TODO: what if near multiple boids?
 			}
 		}
 	}
-	//*/
 
 	if (graphics.mouseIsScary)
 	{
@@ -93,6 +98,8 @@ void NA_Boid::update()
 void NA_Boid::postUpdate()
 {
 	
+	//TODO: enforce rotation limit
+
 	currentVelocity = newVelocity;
 	newVelocity = NA_Vector();//prepare vector for next update
 
@@ -103,6 +110,8 @@ void NA_Boid::postUpdate()
 
 	//if (currentVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
 	
+	
+
 
 	//move
 	position.x += currentVelocity.x;
@@ -142,12 +151,12 @@ void NA_Boid::draw()
 
 	//draw body
 	graphics.setColour(1, 1, 1);
-	graphics.setPointSize(6);
+	graphics.setPointSize(3);
 	graphics.drawPixel(position.x,position.y);
 
 	//draw 'nose'
 	graphics.setColour(1, 0, 0);
-	graphics.setPointSize(2);
+	graphics.setPointSize(1);
 	NA_Vector noseOffset = currentVelocity;
 	noseOffset.normalise();
 	graphics.drawPixel(position.x+(noseOffset.x*5.0f), position.y+(noseOffset.y*5.0f));

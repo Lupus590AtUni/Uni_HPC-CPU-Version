@@ -20,10 +20,7 @@ const int SCREEN_HEIGHT = 500;
 const int FPS_MAX = 60;//anything bigger than 60 fps is pointless on most machines as the monitor won't take more
 
 const int BOID_MAX = 50;
-const float BOID_SPEED_MAX = 5.0f;
-const float BOID_RESPECT_DIST = 25.0f; //boid to boid spacing
-const float BOID_ROTATE_MAX = 5.0f;
-const float BOID_MOUSE_FEAR = 50.0f; //boid distance from mouse
+
 
 
 

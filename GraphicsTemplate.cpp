@@ -23,7 +23,19 @@ void renderScene()
 		boidList[i].draw();
 	}
 
+	NA_Vector sumPosition;
+	for (int i = 0; i < BOID_MAX; i++)
+	{
+		sumPosition.x += boidList[i].position.x;
+		sumPosition.y += boidList[i].position.y;
+	}
+	//convert to average
+	sumPosition.x = sumPosition.x / (BOID_MAX);
+	sumPosition.y = sumPosition.y / (BOID_MAX);
 
+	graphics.setPointSize(10);
+	graphics.setColour(0.0f, 0.0f, 1.0f);
+	graphics.drawPixel(sumPosition.x, sumPosition.y);
 	
 
 	// render the scene
