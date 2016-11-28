@@ -39,7 +39,7 @@ void NA_Boid::update()
 
 	//cout << "average vel: X: " << sumVelocity.x << " Y:" << sumVelocity.y << "\n";
 
-	newVelocity = sumVelocity; //TODO: maybe should change this gradually
+	newVelocity = sumVelocity;
 	
 
 
@@ -124,11 +124,12 @@ void NA_Boid::postUpdate()
 
 	//if (newVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
 	
-
+	currentVelocity = newVelocity; //TODO: Acceleration limit?
+	newVelocity = NA_Vector();//prepare vector for next update
 
 	//move
-	//position.x += newVelocity.x;
-	//position.y += newVelocity.y;
+	position.x += currentVelocity.x;
+	position.y += currentVelocity.y;
 
 
 	//screen wrap
@@ -142,8 +143,8 @@ void NA_Boid::postUpdate()
 	if (position.y > SCREEN_HEIGHT)
 		position.y = 0;
 
-	currentVelocity = newVelocity;
-	newVelocity = NA_Vector();//prepare vector for next update
+	
+	
 }
 
 /*NA_Vector NA_Boid::getVelocity()
