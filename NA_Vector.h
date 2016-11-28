@@ -15,6 +15,7 @@ public:
 	float dot(NA_Vector & v1);
 	float length();
 	static NA_Vector twoPointsIntoVector(NA_Vector & startPoint, NA_Vector & endPoint);
+	float angle(NA_Vector & v1);
 
 	//were private, but gets and sets slowdown realtime systems (such as games)
 	float x;

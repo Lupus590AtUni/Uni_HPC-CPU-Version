@@ -7,6 +7,7 @@ using std::vector;
 
 #include "NA_Boid.h"
 #include "NA_MathsLib.h"
+#include "NA_Matrix.h"
 
 
 NA_Boid::NA_Boid()
@@ -95,25 +96,27 @@ void NA_Boid::update()
 void NA_Boid::postUpdate()
 {
 	
-	//TODO: enforce rotation limit
-	//need to find angle between vectors: http://stackoverflow.com/questions/14066933/direct-way-of-computing-clockwise-angle-between-2-vectors
+	//enforce rotation limit
+	
+	if (abs(newVelocity.angle(currentVelocity)) > BOID_ROTATE_MAX)
+	{
+		//TODO: what way do I rotate???
 
-	currentVelocity = newVelocity;
-	newVelocity = NA_Vector();//prepare vector for next update
+	}
+	
 
 	//boids should not break the speed limit
-	if (currentVelocity.length() > BOID_SPEED_MAX)
-	currentVelocity.normalise();
-	currentVelocity.scale(BOID_SPEED_MAX);
+	if (newVelocity.length() > BOID_SPEED_MAX)
+		newVelocity.normalise();
+	newVelocity.scale(BOID_SPEED_MAX);
 
-	//if (currentVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
-	
+	//if (newVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
 	
 
 
 	//move
-	position.x += currentVelocity.x;
-	position.y += currentVelocity.y;
+	position.x += newVelocity.x;
+	position.y += newVelocity.y;
 
 
 	//screen wrap
@@ -127,7 +130,8 @@ void NA_Boid::postUpdate()
 	if (position.y > SCREEN_HEIGHT)
 		position.y = 0;
 
-
+	currentVelocity = newVelocity;
+	newVelocity = NA_Vector();//prepare vector for next update
 }
 
 /*NA_Vector NA_Boid::getVelocity()

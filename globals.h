@@ -17,4 +17,4 @@ const float BOID_SPEED_MAX = 2.0f;
 const float BOID_RESPECT_DIST = 25.0f; //boid to boid spacing
 const float BOID_ROTATE_MAX = 5.0f;
 const float BOID_MOUSE_FEAR = 50.0f; //boid distance from mouse
-const float BOID_COHESION_WEIGHTING = 0.01f;
+const float BOID_COHESION_WEIGHTING = 0.0025f;
