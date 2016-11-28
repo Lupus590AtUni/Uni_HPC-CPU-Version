@@ -110,9 +110,6 @@
     <ClInclude Include="NA_Timer.h" />
     <ClInclude Include="NA_Vector.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

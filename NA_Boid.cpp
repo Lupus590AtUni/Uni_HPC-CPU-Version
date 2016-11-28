@@ -1,4 +1,5 @@
-
+#include <iostream>
+using std::cout;
 #include "globals.h"
 #include "cRenderClass.h"
 
@@ -98,10 +99,21 @@ void NA_Boid::postUpdate()
 	
 	//enforce rotation limit
 	
-	if (abs(newVelocity.angle(currentVelocity)) > BOID_ROTATE_MAX)
+	if (newVelocity.clockwiseAngle(currentVelocity) > BOID_ROTATE_MAX && currentVelocity.clockwiseAngle(newVelocity) > BOID_ROTATE_MAX)
 	{
-		//TODO: what way do I rotate???
+		
+		if (newVelocity.clockwiseAngle(currentVelocity) < currentVelocity.clockwiseAngle(newVelocity))//clockwise or counterclockwise?
+		{
+			
+			NA_Matrix r = NA_Matrix(NA_Matrix::types::rotateZ, BOID_ROTATE_MAX);
+			newVelocity = r.matrixXvector(newVelocity);
+		}
+		else
+		{
 
+			NA_Matrix r = NA_Matrix(NA_Matrix::types::rotateZ, -BOID_ROTATE_MAX);
+			newVelocity = r.matrixXvector(newVelocity);
+		}
 	}
 	
 
@@ -115,8 +127,8 @@ void NA_Boid::postUpdate()
 
 
 	//move
-	position.x += newVelocity.x;
-	position.y += newVelocity.y;
+	//position.x += newVelocity.x;
+	//position.y += newVelocity.y;
 
 
 	//screen wrap

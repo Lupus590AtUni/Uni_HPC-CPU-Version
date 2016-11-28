@@ -76,14 +76,13 @@ NA_Vector NA_Vector::twoPointsIntoVector(NA_Vector &startPoint, NA_Vector &endPo
 	return v;
 }
 
-float NA_Vector::angle(NA_Vector & v1)
+float NA_Vector::clockwiseAngle(NA_Vector & v1)
 {
-	//http://stackoverflow.com/questions/14066933/direct-way-of-computing-clockwise-angle-between-2-vectors/16544330#16544330
+	//http://stackoverflow.com/questions/14066933/direct-way-of-computing-clockwise-clockwiseAngle-between-2-vectors/16544330#16544330
 
 	float lenSq1, lenSq2;
-	lenSq1 = x*x + y*y + z*z;
-	lenSq2 = v1.x*v1.x + v1.y*v1.y + v1.z*v1.z;
-	
+	lenSq1 = x*x + y*y + z*z +w*w;
+	lenSq2 = v1.x*v1.x + v1.y*v1.y + v1.z*v1.z + v1.w*v1.w;
 	
 	return acos(dot(v1) / sqrt(lenSq1 * lenSq2));
 }
