@@ -134,14 +134,14 @@ void NA_Boid::postUpdate()
 
 	//screen wrap
 	if (position.x < 0)
-		position.x = SCREEN_WIDTH;
+		position.x += SCREEN_WIDTH;
 	if (position.x > SCREEN_WIDTH)
-		position.x = 0;
+		position.x -= SCREEN_WIDTH;
 
 	if (position.y < 0)
-		position.y = SCREEN_HEIGHT;
+		position.y += SCREEN_HEIGHT;
 	if (position.y > SCREEN_HEIGHT)
-		position.y = 0;
+		position.y -= SCREEN_HEIGHT;
 
 	
 	
