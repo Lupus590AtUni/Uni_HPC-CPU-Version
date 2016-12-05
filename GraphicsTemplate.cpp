@@ -75,10 +75,10 @@ void update()
 	if (DEBUG_PRINT_POS_OF_ALL_BOIDS)
 		fpsCap.setDuration(DEBUG_UPDATE_FREQUENCY);
 	else
-		fpsCap.setDuration(1 / FPS_MAX);
+		fpsCap.setDuration(1.0f / FPS_MAX);
 
 
-	if (first)
+	if (first && !DEBUG_RUN_TOP_SPEED)
 		fpsCap.wait();
 
 	for (int i = 0; i < BOID_MAX; i++)
@@ -101,7 +101,7 @@ void update()
 	//debugMouse();
 	//cout << "mouse scary? " << graphics.mouseIsScary << "\n";
 	
-	fpsCap.wait();
+	if (!DEBUG_RUN_TOP_SPEED) fpsCap.wait();
 
 	// always re-render the scene..
 	renderScene();
