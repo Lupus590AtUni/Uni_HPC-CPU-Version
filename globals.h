@@ -21,3 +21,4 @@ const float BOID_COHESION_WEIGHTING = 0.0025f;
 const float BIOD_SIGHT_RANGE = 25.0f; //max distance to consider boids as nearby
 
 const bool DEBUG_AVERAGE_POS = false;
+const bool DEBUG_HIGHLIGHT_FIRST_BOID = true;

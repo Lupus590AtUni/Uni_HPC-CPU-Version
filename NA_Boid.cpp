@@ -183,9 +183,24 @@ void NA_Boid::draw()
 {
 	extern cRenderClass graphics;
 
+	short int bodyColourR, bodyColourG, bodyColourB;
+	bodyColourR = 1;
+	bodyColourG = 1;
+	bodyColourB = 1;
+
+	if (DEBUG_HIGHLIGHT_FIRST_BOID)
+	{
+		extern vector<NA_Boid> boidList;
+		if (this == &boidList[0])
+		{
+			bodyColourR = 0;
+			bodyColourG = 1;
+			bodyColourB = 0;
+		}
+	}
 
 	//draw body
-	graphics.setColour(1, 1, 1);
+	graphics.setColour(bodyColourR, bodyColourG, bodyColourB);
 	graphics.setPointSize(3);
 	graphics.drawPixel(position.x,position.y);
 
@@ -195,7 +210,5 @@ void NA_Boid::draw()
 	NA_Vector noseOffset = currentVelocity;
 	noseOffset.normalise();
 	graphics.drawPixel(position.x+(noseOffset.x*5.0f), position.y+(noseOffset.y*5.0f));
-
-	
 
 }
