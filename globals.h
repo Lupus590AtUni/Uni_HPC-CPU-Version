@@ -20,6 +20,7 @@ const float BOID_MOUSE_FEAR = 50.0f; //boid distance from mouse
 const float BOID_COHESION_WEIGHTING = 0.0025f;
 
 const bool DEBUG_AVERAGE_POS = false;
-const bool DEBUG_HIGHLIGHT_FIRST_BOID = false;
-const bool DEBUG_PRINT_BOID_POS = true;
+const bool DEBUG_HIGHLIGHT_FIRST_BOID = true;
+const bool DEBUG_PRINT_POS_OF_FIRST_BOID = true;
+const bool DEBUG_PRINT_POS_OF_ALL_BOIDS = false;
 const float DEBUG_UPDATE_FREQUENCY = 0.00000001f;

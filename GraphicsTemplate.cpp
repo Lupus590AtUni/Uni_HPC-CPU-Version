@@ -72,7 +72,7 @@ void update()
 	// add any update code here...
 	static NA_Timer fpsCap;//wait if FPS is too high (if boids move too fast)
 	fpsCap.restart();
-	if (DEBUG_PRINT_BOID_POS)
+	if (DEBUG_PRINT_POS_OF_ALL_BOIDS)
 		fpsCap.setDuration(DEBUG_UPDATE_FREQUENCY);
 	else
 		fpsCap.setDuration(1 / FPS_MAX);
@@ -86,11 +86,11 @@ void update()
 		boidList[i].update();
 	}
 
-	if (DEBUG_PRINT_BOID_POS) system("cls");
+	if (DEBUG_PRINT_POS_OF_ALL_BOIDS || DEBUG_PRINT_POS_OF_FIRST_BOID) system("cls");
 	for (int i = 0; i < BOID_MAX; i++)
 	{
 		boidList[i].postUpdate();
-		if (DEBUG_PRINT_BOID_POS) cout << "pos: " << boidList[i].position.x << " " << boidList[i].position.y << "\n";
+		if (DEBUG_PRINT_POS_OF_ALL_BOIDS || DEBUG_PRINT_POS_OF_FIRST_BOID && i == 0) cout << "pos: " << boidList[i].position.x << " " << boidList[i].position.y << "\n";
 	}
 
 
