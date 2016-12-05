@@ -80,7 +80,7 @@ float NA_MathsLib::tan(float d)
 #pragma endregion
 
 //returns true if the two floats are within 0.001 of each other
-bool aboutEqual(float v1, float v2, float epsilon)
+bool NA_MathsLib::aboutEqual(float v1, float v2, float epsilon)
 {
 	if (v1 > v2)
 	{
