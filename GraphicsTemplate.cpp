@@ -4,6 +4,7 @@
 // includes 
 //////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
+using std::cout;
 #include <tchar.h>
 #include <windows.h>
 #include "GL/glut.h"
@@ -71,7 +72,12 @@ void update()
 	// add any update code here...
 	static NA_Timer fpsCap;//wait if FPS is too high (if boids move too fast)
 	fpsCap.restart();
-	fpsCap.setDuration(1 / FPS_MAX);
+	if (DEBUG_PRINT_BOID_POS)
+		fpsCap.setDuration(1 / FPS_MAX);
+	else
+		fpsCap.setDuration(1 / FPS_MAX);
+
+
 	if (first)
 		fpsCap.wait();
 
@@ -80,10 +86,11 @@ void update()
 		boidList[i].update();
 	}
 
-
+	if (DEBUG_PRINT_BOID_POS) system("cls");
 	for (int i = 0; i < BOID_MAX; i++)
 	{
 		boidList[i].postUpdate();
+		if (DEBUG_PRINT_BOID_POS) cout << "pos: " << boidList[i].position.x << " " << boidList[i].position.y << "\n";
 	}
 
 
@@ -94,7 +101,7 @@ void update()
 	//debugMouse();
 	//cout << "mouse scary? " << graphics.mouseIsScary << "\n";
 	
-	//fpsCap.wait();
+	fpsCap.wait();
 
 	// always re-render the scene..
 	renderScene();
