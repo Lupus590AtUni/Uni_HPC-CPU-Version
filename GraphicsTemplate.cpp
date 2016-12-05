@@ -34,7 +34,7 @@ void renderScene()
 		boidList[i].draw();
 	}
 
-	if (true)
+	if (DEBUG_AVERAGE_POS)
 	{
 		NA_Vector sumPosition;
 		for (int i = 0; i < BOID_MAX; i++)
