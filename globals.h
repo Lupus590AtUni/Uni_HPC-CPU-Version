@@ -22,3 +22,4 @@ const float BIOD_SIGHT_RANGE = 25.0f; //max distance to consider boids as nearby
 
 const bool DEBUG_AVERAGE_POS = false;
 const bool DEBUG_HIGHLIGHT_FIRST_BOID = true;
+const bool DEBUG_PRINT_BOID_POS = true;

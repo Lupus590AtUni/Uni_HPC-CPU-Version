@@ -162,8 +162,6 @@ void NA_Boid::postUpdate()
 		position.y += SCREEN_HEIGHT;
 	if (position.y > SCREEN_HEIGHT)
 		position.y -= SCREEN_HEIGHT;
-
-	
 	
 }
 
