@@ -105,12 +105,12 @@ void NA_Boid::update()
 	}
 
 	//TODO: LOW: BUG: some boids stop
-	/*//fudge stopped boids
+	//fudge stopped boids
 	if (na_maths.aboutEqual(currentVelocity.length(), 0.0f))
 	{
 		currentVelocity.x = float(na_maths.dice(-100, 100)) / 100.0f;
 		currentVelocity.y = float(na_maths.dice(-100, 100)) / 100.0f;
-	}*/
+	}
 
 }
 
