@@ -21,21 +21,33 @@ void NA_Boid::update()
 	extern vector<NA_Boid> boidList;
 	extern NA_MathsLib na_maths;
 	extern cRenderClass graphics;
-	//TODO: find nearby boids and only consider them
 
+	vector<NA_Boid> shortBoidList;
+	//find nearby boids and only consider them
+	for (int i = 0; i < BOID_MAX; i++)
+	{
+		/*if (&boidList[i] == this) //don't add self  //TODO: BUG: boids disappear if this is active
+		{
+			continue;
+		}*/
+		if (NA_Vector::twoPointsIntoVector(position, boidList[i].position).length() < BIOD_SIGHT_RANGE)
+		{
+			shortBoidList.push_back(boidList[i]);
+		}
+	}
 
-
+	int shortBoidListSize = shortBoidList.size();
 	//alignment - align self to average heading
 	//calc sum velocity
 	NA_Vector sumVelocity;
-	for (int i = 0; i < BOID_MAX; i++)
+	for (int i = 0; i < shortBoidListSize; i++)
 	{
-		sumVelocity.x += boidList[i].currentVelocity.x;
-		sumVelocity.y += boidList[i].currentVelocity.y;
+		sumVelocity.x += shortBoidList[i].currentVelocity.x;
+		sumVelocity.y += shortBoidList[i].currentVelocity.y;
 	}
 	//convert to average
-	sumVelocity.x = sumVelocity.x / (BOID_MAX);
-	sumVelocity.y = sumVelocity.y / (BOID_MAX);
+	sumVelocity.x = sumVelocity.x / (shortBoidListSize);
+	sumVelocity.y = sumVelocity.y / (shortBoidListSize);
 
 	//cout << "average vel: X: " << sumVelocity.x << " Y:" << sumVelocity.y << "\n";
 
@@ -47,14 +59,14 @@ void NA_Boid::update()
 	//cohesion - move towards average position
 	//calc sum position
 	NA_Vector sumPosition;
-	for (int i = 0; i < BOID_MAX; i++)
+	for (int i = 0; i < shortBoidListSize; i++)
 	{
-		sumPosition.x += boidList[i].position.x;
-		sumPosition.y += boidList[i].position.y;
+		sumPosition.x += shortBoidList[i].position.x;
+		sumPosition.y += shortBoidList[i].position.y;
 	}
 	//convert to average
-	sumPosition.x = sumPosition.x / (BOID_MAX);
-	sumPosition.y = sumPosition.y / (BOID_MAX);
+	sumPosition.x = sumPosition.x / (shortBoidListSize);
+	sumPosition.y = sumPosition.y / (shortBoidListSize);
 
 
 	//TODO: if i'm close already maybe i should go slower
@@ -67,9 +79,9 @@ void NA_Boid::update()
 
 
 	//separation
-	for (int i = 0; i < BOID_MAX; i++)
+	for (int i = 0; i < shortBoidListSize; i++)
 	{
-		if (&boidList[i] != this) //ignore self
+		if (&shortBoidList[i] != this) //ignore self //self is never in short list, this is left over from when using the full list
 		{
 			NA_Vector d = NA_Vector::twoPointsIntoVector(boidList[i].position, position);
 			if (d.length() < BOID_RESPECT_DIST)

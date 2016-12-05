@@ -14,7 +14,10 @@ const int FPS_MAX = 60;//anything bigger than 60 fps is pointless on most machin
 const int BOID_MAX = 50;
 
 const float BOID_SPEED_MAX = 2.0f;
-const float BOID_RESPECT_DIST = 25.0f; //boid to boid spacing
+const float BOID_RESPECT_DIST = 15.0f; //boid to boid spacing
 const float BOID_ROTATE_MAX = 0.00000000001f;
-const float BOID_MOUSE_FEAR = 50.0f; //boid distance from mouse
+const float BOID_MOUSE_FEAR = 25.0f; //boid distance from mouse
 const float BOID_COHESION_WEIGHTING = 0.0025f;
+const float BIOD_SIGHT_RANGE = 25.0f; //max distance to consider boids as nearby
+
+const bool DEBUG_AVERAGE_POS = false;
