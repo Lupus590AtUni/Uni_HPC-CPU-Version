@@ -18,7 +18,6 @@ NA_Boid::NA_Boid()
 
 void NA_Boid::update()
 {
-	//TODO: BUG: boids dissapear sometimes
 	extern vector<NA_Boid> boidList;
 	extern NA_MathsLib na_maths;
 	extern cRenderClass graphics;
@@ -106,12 +105,12 @@ void NA_Boid::update()
 	}
 
 	//TODO: LOW: BUG: some boids stop
-	//fudge stopped boids
+	/*//fudge stopped boids
 	if (na_maths.aboutEqual(currentVelocity.length(), 0.0f))
 	{
 		currentVelocity.x = float(na_maths.dice(-100, 100)) / 100.0f;
 		currentVelocity.y = float(na_maths.dice(-100, 100)) / 100.0f;
-	}
+	}*/
 
 }
 
