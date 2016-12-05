@@ -73,7 +73,7 @@ void update()
 	static NA_Timer fpsCap;//wait if FPS is too high (if boids move too fast)
 	fpsCap.restart();
 	if (DEBUG_PRINT_BOID_POS)
-		fpsCap.setDuration(1 / FPS_MAX);
+		fpsCap.setDuration(DEBUG_UPDATE_FREQUENCY);
 	else
 		fpsCap.setDuration(1 / FPS_MAX);
 

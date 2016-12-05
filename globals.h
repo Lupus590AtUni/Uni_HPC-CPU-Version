@@ -22,3 +22,4 @@ const float BOID_COHESION_WEIGHTING = 0.0025f;
 const bool DEBUG_AVERAGE_POS = false;
 const bool DEBUG_HIGHLIGHT_FIRST_BOID = false;
 const bool DEBUG_PRINT_BOID_POS = true;
+const float DEBUG_UPDATE_FREQUENCY = 0.00000001f;
