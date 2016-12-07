@@ -18,8 +18,7 @@ NA_Boid::NA_Boid()
 
 void NA_Boid::update()
 {
-  //TODO: Toggle behavours with input
-  //TODO: Toggle short sightedness
+  //TODO: BUG: Toggles not obeyed
 	extern vector<NA_Boid> boidList;
 	extern NA_MathsLib na_maths;
 	extern cRenderClass graphics;
@@ -32,63 +31,70 @@ void NA_Boid::update()
 		{
 			continue;
 		}*/
-		if (NA_Vector::twoPointsIntoVector(position, boidList[i].position).length() < BIOD_SIGHT_RANGE)
+		if (BOID_DO_SHORTSIGHT && NA_Vector::twoPointsIntoVector(position, boidList[i].position).length() < BIOD_SIGHT_RANGE)
 		{
 			shortBoidList.push_back(boidList[i]);
 		}
 	}
 
 	int shortBoidListSize = shortBoidList.size();
-	//alignment - align self to average heading
-	//calc sum velocity
-	NA_Vector sumVelocity;
-	for (int i = 0; i < shortBoidListSize; i++)
+	if (BOID_DO_ALIGNMENT)
 	{
-		sumVelocity.x += shortBoidList[i].currentVelocity.x;
-		sumVelocity.y += shortBoidList[i].currentVelocity.y;
-	}
-	//convert to average
-	sumVelocity.x = sumVelocity.x / (shortBoidListSize);
-	sumVelocity.y = sumVelocity.y / (shortBoidListSize);
-
-	//cout << "average vel: X: " << sumVelocity.x << " Y:" << sumVelocity.y << "\n";
-
-	newVelocity = sumVelocity;
-	
-
-
-	
-	//cohesion - move towards average position
-	//calc sum position
-	NA_Vector sumPosition;
-	for (int i = 0; i < shortBoidListSize; i++)
-	{
-		sumPosition.x += shortBoidList[i].position.x;
-		sumPosition.y += shortBoidList[i].position.y;
-	}
-	//convert to average
-	sumPosition.x = sumPosition.x / (shortBoidListSize);
-	sumPosition.y = sumPosition.y / (shortBoidListSize);
-
-
-	//TODO: if i'm close already maybe i should go slower
-	NA_Vector temp = NA_Vector::twoPointsIntoVector(position, sumPosition); //modify velocity to head towards the average position
-	
-	temp.scale(BOID_COHESION_WEIGHTING);
-
-	newVelocity.x += temp.x;
-	newVelocity.y += temp.y;
-
-
-	//separation
-	for (int i = 0; i < shortBoidListSize; i++)
-	{
-		if (&shortBoidList[i] != this) //ignore self //self is never in short list, this is left over from when using the full list
+		//alignment - align self to average heading
+		//calc sum velocity
+		NA_Vector sumVelocity;
+		for (int i = 0; i < shortBoidListSize; i++)
 		{
-			NA_Vector d = NA_Vector::twoPointsIntoVector(boidList[i].position, position);
-			if (d.length() < BOID_RESPECT_DIST)
+			sumVelocity.x += shortBoidList[i].currentVelocity.x;
+			sumVelocity.y += shortBoidList[i].currentVelocity.y;
+		}
+		//convert to average
+		sumVelocity.x = sumVelocity.x / (shortBoidListSize);
+		sumVelocity.y = sumVelocity.y / (shortBoidListSize);
+
+		//cout << "average vel: X: " << sumVelocity.x << " Y:" << sumVelocity.y << "\n";
+
+		newVelocity = sumVelocity;
+	}
+	
+
+
+	if (BOID_DO_COHESION)
+	{
+		//cohesion - move towards average position
+		//calc sum position
+		NA_Vector sumPosition;
+		for (int i = 0; i < shortBoidListSize; i++)
+		{
+			sumPosition.x += shortBoidList[i].position.x;
+			sumPosition.y += shortBoidList[i].position.y;
+		}
+		//convert to average
+		sumPosition.x = sumPosition.x / (shortBoidListSize);
+		sumPosition.y = sumPosition.y / (shortBoidListSize);
+
+
+		//TODO: if i'm close already maybe i should go slower
+		NA_Vector temp = NA_Vector::twoPointsIntoVector(position, sumPosition); //modify velocity to head towards the average position
+
+		temp.scale(BOID_COHESION_WEIGHTING);
+
+		newVelocity.x += temp.x;
+		newVelocity.y += temp.y;
+	}
+
+	if (BOID_DO_SEPERATION)
+	{
+		//separation
+		for (int i = 0; i < shortBoidListSize; i++)
+		{
+			if (&shortBoidList[i] != this) //ignore self //self is never in short list, this is left over from when using the full list
 			{
-				newVelocity = d; //TODO: what if near multiple boids?
+				NA_Vector d = NA_Vector::twoPointsIntoVector(boidList[i].position, position);
+				if (d.length() < BOID_RESPECT_DIST)
+				{
+					newVelocity = d; //TODO: what if near multiple boids?
+				}
 			}
 		}
 	}
@@ -120,15 +126,15 @@ void NA_Boid::update()
 
 void NA_Boid::postUpdate()
 {
-	
+
 	//enforce rotation limit
-	
-	if (newVelocity.clockwiseAngle(currentVelocity) > BOID_ROTATE_MAX && currentVelocity.clockwiseAngle(newVelocity) > BOID_ROTATE_MAX)
+
+	if (BOID_DO_ROTATELIMIT && newVelocity.clockwiseAngle(currentVelocity) > BOID_ROTATE_MAX && currentVelocity.clockwiseAngle(newVelocity) > BOID_ROTATE_MAX)
 	{
-		
+
 		if (newVelocity.clockwiseAngle(currentVelocity) < currentVelocity.clockwiseAngle(newVelocity))//clockwise or counterclockwise?
 		{
-			
+
 			NA_Matrix r = NA_Matrix(NA_Matrix::types::rotateZ, BOID_ROTATE_MAX);
 			newVelocity = r.matrixXvector(newVelocity);
 		}
@@ -139,33 +145,40 @@ void NA_Boid::postUpdate()
 			newVelocity = r.matrixXvector(newVelocity);
 		}
 	}
-	
+
 
 	//boids should not break the speed limit
-	if (newVelocity.length() > BOID_SPEED_MAX)
+	if (BOID_DO_SPEEDLIMIT && newVelocity.length() > BOID_SPEED_MAX)
+	{
 		newVelocity.normalise();
-	newVelocity.scale(BOID_SPEED_MAX);
+		newVelocity.scale(BOID_SPEED_MAX);
 
-	//if (newVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
-	
-	currentVelocity = newVelocity; //TODO: Acceleration limit?
-	newVelocity = NA_Vector();//prepare vector for next update
+		//if (newVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
+	}
 
-	//move
-	position.x += currentVelocity.x;
-	position.y += currentVelocity.y;
+	if(BOID_DO_MOVE)
+	{
+		currentVelocity = newVelocity; //TODO: Acceleration limit?
+		newVelocity = NA_Vector();//prepare vector for next update
 
+		//move
+		position.x += currentVelocity.x;
+		position.y += currentVelocity.y;
+	}
 
-	//screen wrap
-	if (position.x < 0)
-		position.x += SCREEN_WIDTH;
-	if (position.x > SCREEN_WIDTH)
-		position.x -= SCREEN_WIDTH;
+	if (BOID_DO_SCREENWRAP)
+	{
+		//screen wrap
+		if (position.x < 0)
+			position.x += SCREEN_WIDTH;
+		if (position.x > SCREEN_WIDTH)
+			position.x -= SCREEN_WIDTH;
 
-	if (position.y < 0)
-		position.y += SCREEN_HEIGHT;
-	if (position.y > SCREEN_HEIGHT)
-		position.y -= SCREEN_HEIGHT;
+		if (position.y < 0)
+			position.y += SCREEN_HEIGHT;
+		if (position.y > SCREEN_HEIGHT)
+			position.y -= SCREEN_HEIGHT;
+	}
 	
 }
 

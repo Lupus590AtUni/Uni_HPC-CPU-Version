@@ -20,6 +20,15 @@ const float BOID_MOUSE_FEAR = 25.0f; //boid distance from mouse
 const float BOID_COHESION_WEIGHTING = 0.0025f;
 const float BIOD_SIGHT_RANGE = 25.0f; //max distance to consider boids as nearby
 
+static bool BOID_DO_ALIGNMENT = true;
+static bool BOID_DO_COHESION = true;
+static bool BOID_DO_SEPERATION = true;
+static bool BOID_DO_SHORTSIGHT = true;
+static bool BOID_DO_SPEEDLIMIT = true;
+static bool BOID_DO_ROTATELIMIT = true;
+static bool BOID_DO_SCREENWRAP = true;
+static bool BOID_DO_MOVE = true;
+
 const bool DEBUG_RUN_TOP_SPEED = true; //override FPS cap
 const bool DEBUG_AVERAGE_POS = false;
 const bool DEBUG_HIGHLIGHT_FIRST_BOID = false;

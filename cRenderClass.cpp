@@ -227,6 +227,64 @@ void mouse(int x, int y)
 
 void key(unsigned char c, int x, int y)
 {
+	switch(c)
+	{
+		case 'a':
+		case 'A':
+			BOID_DO_ALIGNMENT = !BOID_DO_ALIGNMENT;
+			break;
+
+		case 'c':
+		case 'C':
+			BOID_DO_COHESION = !BOID_DO_COHESION;
+			break;
+
+		case 's':
+		case 'S':
+			BOID_DO_SEPERATION = !BOID_DO_SEPERATION;
+			break;
+
+		case 'q':
+		case 'Q':
+			BOID_DO_SHORTSIGHT = !BOID_DO_SHORTSIGHT;
+			break;
+
+		case 'd':
+		case 'D':
+			BOID_DO_SPEEDLIMIT = !BOID_DO_SPEEDLIMIT;
+			break;
+
+		case 'r':
+		case 'R':
+			BOID_DO_ROTATELIMIT = !BOID_DO_ROTATELIMIT;
+			break;
+
+		case 'W':
+		case 'w':
+			BOID_DO_SCREENWRAP = !BOID_DO_SCREENWRAP;
+			break;
+
+		case 'm':
+		case 'M':
+			BOID_DO_MOVE = !BOID_DO_MOVE;
+			break;
+
+		default:
+			//cout << "cRenderClass.cpp::key - default used is switch\n";
+			break;
+	}	
+
+	//reprint controls so status is shown
+	system("cls");
+	cout << "Toggle controls:\n";
+	cout << " a - alignment " << BOID_DO_ALIGNMENT << "\n";
+	cout << " c - cohesion " << BOID_DO_COHESION << "\n";
+	cout << " s - seperation " << BOID_DO_SEPERATION << "\n";
+	cout << " q - short-sightedness " << BOID_DO_SHORTSIGHT << "\n";
+	cout << " d - speed limit " << BOID_DO_SPEEDLIMIT << "\n";
+	cout << " r - rotation limit " << BOID_DO_ROTATELIMIT << "\n";
+	cout << " w - screen wrapping " << BOID_DO_SCREENWRAP << "\n";
+	cout << " m - movement " << BOID_DO_MOVE << "\n";
 
 }
 
