@@ -108,6 +108,7 @@ void NA_Boid::update()
 
 	//TODO: LOW: BUG: some boids stop
 	//they stop when they interact with other boids
+	//could it be caused by not having any other boids in range?
 	//fudge stopped boids
 	if (na_maths.aboutEqual(currentVelocity.length(), 0.0f))
 	{
