@@ -18,6 +18,8 @@ NA_Boid::NA_Boid()
 
 void NA_Boid::update()
 {
+  //TODO: Toggle behavours with input
+  //TODO: Toggle short sightedness
 	extern vector<NA_Boid> boidList;
 	extern NA_MathsLib na_maths;
 	extern cRenderClass graphics;
