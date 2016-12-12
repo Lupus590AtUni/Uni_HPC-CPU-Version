@@ -19,6 +19,8 @@ const float BOID_ROTATE_MAX = 0.00000000001f;
 const float BOID_MOUSE_FEAR = 50.0f; //boid distance from mouse
 const float BOID_COHESION_WEIGHTING = 0.0025f;
 
+const bool WALLS = true;
+
 const bool DEBUG_RUN_TOP_SPEED = true; //override FPS cap
 const bool DEBUG_AVERAGE_POS = false;
 const bool DEBUG_HIGHLIGHT_FIRST_BOID = false;
