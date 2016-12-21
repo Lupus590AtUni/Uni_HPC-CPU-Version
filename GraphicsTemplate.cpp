@@ -12,6 +12,7 @@ using std::cout;
 #include "cRenderClass.h"
 #include <vector>
 using std::vector;
+#include <conio.h> //_kbhit()
 //
 #include "NA_Boid.h"
 #include "NA_MathsLib.h"
@@ -64,7 +65,13 @@ void update()
 	static bool first = true;
 
 	if (first)
+	{
 		renderScene();
+		while (DEBUG_WAIT_BEFORE_RUN && !_kbhit())
+		{
+			//wait for recording
+		}
+	}
 	first = false;
 
 	//renderScene();

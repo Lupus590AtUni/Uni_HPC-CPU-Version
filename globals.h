@@ -35,3 +35,4 @@ const bool DEBUG_HIGHLIGHT_FIRST_BOID = false;
 const bool DEBUG_PRINT_POS_OF_FIRST_BOID = false;
 const bool DEBUG_PRINT_POS_OF_ALL_BOIDS = false;
 const float DEBUG_UPDATE_FREQUENCY = 1.0f/FPS_MAX; //override FPS
+const bool DEBUG_WAIT_BEFORE_RUN = true;
