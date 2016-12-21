@@ -76,7 +76,7 @@ void cRenderClass::create(int argc, _TCHAR* argv[])
 	glutDisplayFunc(renderScene);	
 
 	glutMouseFunc(click);
-	glutKeyboardFunc(key);
+	//glutKeyboardFunc(key); //TODO: fix, don't forget to uncomment first print of controlles in GraphicsTemplate::main
 	glutMotionFunc(mouse);
 	glutPassiveMotionFunc(mouse);
 

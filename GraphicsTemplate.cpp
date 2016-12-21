@@ -154,15 +154,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	//print keyboard input:
-	cout << "Toggle controls:\n";
-	cout << " a - alignment " << BOID_DO_ALIGNMENT << "\n";
-	cout << " c - cohesion " << BOID_DO_COHESION << "\n";
-	cout << " s - seperation " << BOID_DO_SEPERATION << "\n";
-	cout << " q - short-sightedness " << BOID_DO_SHORTSIGHT << "\n";
-	cout << " d - speed limit " << BOID_DO_SPEEDLIMIT << "\n";
-	cout << " r - rotation limit " << BOID_DO_ROTATELIMIT << "\n";
-	cout << " w - screen wrapping " << BOID_DO_SCREENWRAP << "\n";
-	cout << " m - movement " << BOID_DO_MOVE << "\n";
+	//cout << "Toggle controls:\n";
+	//cout << " a - alignment " << BOID_DO_ALIGNMENT << "\n";
+	//cout << " c - cohesion " << BOID_DO_COHESION << "\n";
+	//cout << " s - seperation " << BOID_DO_SEPERATION << "\n";
+	//cout << " q - short-sightedness " << BOID_DO_SHORTSIGHT << "\n";
+	//cout << " d - speed limit " << BOID_DO_SPEEDLIMIT << "\n";
+	//cout << " r - rotation limit " << BOID_DO_ROTATELIMIT << "\n";
+	//cout << " w - screen wrapping " << BOID_DO_SCREENWRAP << "\n";
+	//cout << " m - movement " << BOID_DO_MOVE << "\n";
+	
 
 	// enter game loop..
 	graphics.loop();	
