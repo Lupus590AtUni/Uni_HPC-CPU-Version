@@ -156,12 +156,11 @@ void NA_Boid::postUpdate()
 		//if (newVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
 	}
 
-	
-	currentVelocity = newVelocity; //TODO: Acceleration limit?
-	newVelocity = NA_Vector();//prepare vector for next update
-
-	if (BOID_DO_MOVE)
+	if(BOID_DO_MOVE)
 	{
+		currentVelocity = newVelocity; //TODO: Acceleration limit?
+		newVelocity = NA_Vector();//prepare vector for next update
+
 		//move
 		position.x += currentVelocity.x;
 		position.y += currentVelocity.y;
