@@ -158,11 +158,10 @@ void NA_Boid::postUpdate()
 
 	
 	currentVelocity = newVelocity; //TODO: Acceleration limit?
-	
+	newVelocity = NA_Vector();//prepare vector for next update
 
 	if (BOID_DO_MOVE)
 	{
-		newVelocity = NA_Vector();//prepare vector for next update
 		//move
 		position.x += currentVelocity.x;
 		position.y += currentVelocity.y;
