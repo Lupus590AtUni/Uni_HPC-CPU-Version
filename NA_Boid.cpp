@@ -18,7 +18,8 @@ NA_Boid::NA_Boid()
 
 void NA_Boid::update()
 {
-  //TODO: BUG: Toggles not obeyed
+	newVelocity = currentVelocity; //just keep doing what your doing if you don't know what to do
+	//TODO: BUG: Toggles not obeyed
 	extern vector<NA_Boid> boidList;
 	extern NA_MathsLib na_maths;
 	extern cRenderClass graphics;
