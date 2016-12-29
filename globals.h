@@ -27,7 +27,7 @@ static bool BOID_DO_SHORTSIGHT = true;
 static bool BOID_DO_SPEEDLIMIT = true;
 static bool BOID_DO_ROTATELIMIT = true;
 static bool BOID_DO_SCREENWRAP = true;
-//static bool BOID_DO_MOVE = true;
+static bool BOID_DO_MOVE = true;
 
 const bool DEBUG_RUN_TOP_SPEED = true; //override FPS cap
 const bool DEBUG_AVERAGE_POS = false;
