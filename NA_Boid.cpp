@@ -120,7 +120,7 @@ void NA_Boid::postUpdate()
 	
 	//enforce rotation limit
 	
-	if (newVelocity.clockwiseAngle(currentVelocity) > BOID_ROTATE_MAX && currentVelocity.clockwiseAngle(newVelocity) > BOID_ROTATE_MAX)
+	/*if (newVelocity.clockwiseAngle(currentVelocity) > BOID_ROTATE_MAX && currentVelocity.clockwiseAngle(newVelocity) > BOID_ROTATE_MAX)
 	{
 		
 		if (newVelocity.clockwiseAngle(currentVelocity) < currentVelocity.clockwiseAngle(newVelocity))//clockwise or counterclockwise?
@@ -135,7 +135,7 @@ void NA_Boid::postUpdate()
 			NA_Matrix r = NA_Matrix(NA_Matrix::types::rotateZ, -BOID_ROTATE_MAX);
 			newVelocity = r.matrixXvector(newVelocity);
 		}
-	}
+	}*/
 	
 
 	//boids should not break the speed limit
