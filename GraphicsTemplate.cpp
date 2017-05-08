@@ -116,7 +116,7 @@ void update()
 int _tmain(int argc, _TCHAR* argv[])
 {	
 	// init glut stuff..
-	graphics.create(argc, argv);
+	//graphics.create(argc, argv);
 
 	// good place for one-off initialisations and objects creation..
 
@@ -148,7 +148,19 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 	// enter game loop..
-	graphics.loop();	
+	//graphics.loop();	
+	int loopCount = 1000;
+	for (int loop = 0; loop < loopCount; loop++)
+	{
+		for (int i = 0; i < BOID_MAX; i++)
+		{
+			boidList[i].update();
+		}
+		for (int i = 0; i < BOID_MAX; i++)
+		{
+			boidList[i].postUpdate();
+		}
+	}
 
 	return 0;
 }
