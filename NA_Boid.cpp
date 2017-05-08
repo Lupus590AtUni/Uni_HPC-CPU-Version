@@ -140,8 +140,10 @@ void NA_Boid::postUpdate()
 
 	//boids should not break the speed limit
 	if (newVelocity.length() > BOID_SPEED_MAX)
+	{
 		newVelocity.normalise();
-	newVelocity.scale(BOID_SPEED_MAX);
+		newVelocity.scale(BOID_SPEED_MAX);
+	}
 
 	//if (newVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
 	
