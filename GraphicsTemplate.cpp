@@ -190,7 +190,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
   duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
 
-  cout << "Time taken " << time_span.count() << " seconds.";
+  cout << time_span.count() << "\n";
 
 	return 0;
 }
