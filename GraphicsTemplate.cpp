@@ -17,6 +17,15 @@ using std::vector;
 #include "NA_MathsLib.h"
 #include "NA_Timer.h"
 
+//http://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
+#include <ctime>
+#include <ratio>
+#include <chrono>
+using namespace std::chrono;
+
+//http://www.cplusplus.com/reference/string/stoi/
+#include <string> 
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // externals 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -115,6 +124,21 @@ void update()
 //////////////////////////////////////////////////////////////////////////////////////////
 int _tmain(int argc, _TCHAR* argv[])
 {	
+
+	if (argc != 2)
+	{
+		std::cerr << "Expect number as only arg for boid count.\n";
+		return -1;
+	}
+	else
+	{
+		BOID_MAX = std::stoi(argv[1], NULL); //http://www.cplusplus.com/reference/string/stoi/
+	}
+
+
+
+
+
 	// init glut stuff..
 	//graphics.create(argc, argv);
 
@@ -149,6 +173,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	// enter game loop..
 	//graphics.loop();	
+  high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	int loopCount = 1000;
 	for (int loop = 0; loop < loopCount; loop++)
 	{
@@ -161,6 +186,11 @@ int _tmain(int argc, _TCHAR* argv[])
 			boidList[i].postUpdate();
 		}
 	}
+  high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
+  duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+
+  cout << "Time taken " << time_span.count() << " seconds.";
 
 	return 0;
 }
