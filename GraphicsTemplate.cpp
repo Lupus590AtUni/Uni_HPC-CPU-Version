@@ -124,15 +124,17 @@ void update()
 //////////////////////////////////////////////////////////////////////////////////////////
 int _tmain(int argc, _TCHAR* argv[])
 {	
-
-	if (argc != 2)
+	int loopCount;
+	if (argc != 3)
 	{
-		std::cerr << "Expect number as only arg for boid count.\n";
+		std::cerr << "usage: "<< argv[0] << " <boidCount> <loopCount> \n";
 		return -1;
 	}
 	else
 	{
 		BOID_MAX = std::stoi(argv[1], NULL); //http://www.cplusplus.com/reference/string/stoi/
+		loopCount = std::stoi(argv[2], NULL);
+		
 	}
 
 
@@ -174,7 +176,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	// enter game loop..
 	//graphics.loop();	
   high_resolution_clock::time_point t1 = high_resolution_clock::now();
-	int loopCount = 1000;
+	
 	for (int loop = 0; loop < loopCount; loop++)
 	{
 		for (int i = 0; i < BOID_MAX; i++)
@@ -190,7 +192,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
   duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
 
-  cout << "Time taken " << time_span.count() << " seconds.";
+  cout << time_span.count() << "\n";
 
 	return 0;
 }
