@@ -147,7 +147,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	// good place for one-off initialisations and objects creation..
 
 	//make all boids
-	na_maths.seedDice();
+	na_maths.seedDice(0);
 	for (int i = 0; i < BOID_MAX; i++)
 	{
 		NA_Boid temp;
