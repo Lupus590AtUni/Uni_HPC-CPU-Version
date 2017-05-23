@@ -79,7 +79,7 @@ void NA_Boid::update()
 	//separation
 	for (int i = 0; i < shortBoidListSize; i++)
 	{
-		if (&shortBoidList[i] != this) //ignore self //self is never in short list, this is left over from when using the full list
+		if (&shortBoidList[i] != this) //ignore self 
 		{
 			NA_Vector d = NA_Vector::twoPointsIntoVector(boidList[i].position, position);
 			if (d.length() < BOID_RESPECT_DIST)
@@ -104,6 +104,7 @@ void NA_Boid::postUpdate()
 {
 	
 	//enforce rotation limit
+	// remove because of a bug and because GPU can't do this easily
 	
 	/*if (newVelocity.clockwiseAngle(currentVelocity) > BOID_ROTATE_MAX && currentVelocity.clockwiseAngle(newVelocity) > BOID_ROTATE_MAX)
 	{
@@ -133,7 +134,7 @@ void NA_Boid::postUpdate()
 	//if (newVelocity.length() > BOID_SPEED_MAX) cout << "speed limit is poorly enforced\n";
 	
 	currentVelocity = newVelocity; //TODO: Acceleration limit?
-	newVelocity = NA_Vector();//prepare vector for next update
+	newVelocity = NA_Vector();//prepare vector for next update - this is why I avoid using pointers
 
 	//move
 	position.x += currentVelocity.x;

@@ -58,10 +58,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-	// init glut stuff..
-	//graphics.create(argc, argv);
-
-	// good place for one-off initialisations and objects creation..
 
 	//make all boids
 	na_maths.seedDice(0);
@@ -71,31 +67,20 @@ int _tmain(int argc, _TCHAR* argv[])
 		temp.position.x = na_maths.dice(SCREEN_WIDTH);
 		temp.position.y = na_maths.dice(SCREEN_HEIGHT);
 
-		//temp.position.x = 100.0f;
-		//temp.position.y = 100.0f;
-
 		temp.currentVelocity.x = float(na_maths.dice(-100,100))/100.0f;
 		temp.currentVelocity.y = float(na_maths.dice(-100, 100))/100.0f;
 
 		boidList.push_back(temp);
 
-		//cout << "POS: X: " << temp.position.x << " Y: " << temp.position.y << "\n";
-		//cout << "VEL: X: " << temp.currentVelocity.x << " Y: " << temp.currentVelocity.y << "\n";
-
-		//NA_Vector t = temp.currentVelocity;
-		//t.normalise();
-		//cout << "NV: X: " << t.x << " Y: " << t.y << "\n\n";
-
 
 	}
 
-
-	// enter game loop..
-	//graphics.loop();	
-  high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	// actual simulation bit, start timer
+    high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	
 	for (int loop = 0; loop < loopCount; loop++)
 	{
+		// for each boid, call update and then postUpdate
 		for (int i = 0; i < BOID_MAX; i++)
 		{
 			boidList[i].update();
@@ -105,11 +90,12 @@ int _tmain(int argc, _TCHAR* argv[])
 			boidList[i].postUpdate();
 		}
 	}
-  high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-  duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+	// calculate and output the time taken
+	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
 
-  cout << time_span.count() << "\n";
+	cout << time_span.count() << "\n";
 
 	return 0;
 }
