@@ -1,14 +1,13 @@
 #include <iostream>
 using std::cout;
 #include "globals.h"
-#include "cRenderClass.h"
 
 #include <vector>
 using std::vector;
 
 #include "NA_Boid.h"
 #include "NA_MathsLib.h"
-#include "NA_Matrix.h"
+//#include "NA_Matrix.h" //needed for rotation limit, removed due to bug
 
 
 NA_Boid::NA_Boid()
@@ -20,7 +19,6 @@ void NA_Boid::update()
 {
 	extern vector<NA_Boid> boidList;
 	extern NA_MathsLib na_maths;
-	extern cRenderClass graphics;
 
 	vector<NA_Boid> shortBoidList;
 	//find nearby boids and only consider them
@@ -88,19 +86,6 @@ void NA_Boid::update()
 			{
 				newVelocity = d; //TODO: what if near multiple boids?
 			}
-		}
-	}
-
-	if (graphics.mouseIsScary)
-	{
-		NA_Vector d = NA_Vector::twoPointsIntoVector(graphics.mousePos, position);
-		//cout << "mouse dist: " << d.length() << "\n";
-		if (d.length() < BOID_MOUSE_FEAR)
-		{
-			//cout << "AHHH A MOUSE!!!\n";
-
-			newVelocity = d;
-
 		}
 	}
 
@@ -180,36 +165,4 @@ NA_Vector NA_Boid::getposition()
 	return temp;
 }*/
 
-void NA_Boid::draw()
-{
-	extern cRenderClass graphics;
 
-	short int bodyColourR, bodyColourG, bodyColourB;
-	bodyColourR = 1;
-	bodyColourG = 1;
-	bodyColourB = 1;
-
-	if (DEBUG_HIGHLIGHT_FIRST_BOID)
-	{
-		extern vector<NA_Boid> boidList;
-		if (this == &boidList[0])
-		{
-			bodyColourR = 0;
-			bodyColourG = 1;
-			bodyColourB = 0;
-		}
-	}
-
-	//draw body
-	graphics.setColour(bodyColourR, bodyColourG, bodyColourB);
-	graphics.setPointSize(3);
-	graphics.drawPixel(position.x,position.y);
-
-	//draw 'nose'
-	graphics.setColour(1, 0, 0);
-	graphics.setPointSize(1);
-	NA_Vector noseOffset = currentVelocity;
-	noseOffset.normalise();
-	graphics.drawPixel(position.x+(noseOffset.x*5.0f), position.y+(noseOffset.y*5.0f));
-
-}

@@ -86,29 +86,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cRenderClass.cpp" />
     <ClCompile Include="GraphicsTemplate.cpp" />
     <ClCompile Include="NA_Boid.cpp" />
-    <ClCompile Include="NA_LinkedListNode.cpp" />
     <ClCompile Include="NA_MathsLib.cpp" />
-    <ClCompile Include="NA_Matrix.cpp" />
-    <ClCompile Include="NA_Queue.cpp" />
-    <ClCompile Include="NA_Return.cpp" />
-    <ClCompile Include="NA_Stack.cpp" />
-    <ClCompile Include="NA_Timer.cpp" />
     <ClCompile Include="NA_Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cRenderClass.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="NA_Boid.h" />
-    <ClInclude Include="NA_LinkedListNode.h" />
     <ClInclude Include="NA_MathsLib.h" />
-    <ClInclude Include="NA_Matrix.h" />
-    <ClInclude Include="NA_Queue.h" />
-    <ClInclude Include="NA_Return.h" />
-    <ClInclude Include="NA_Stack.h" />
-    <ClInclude Include="NA_Timer.h" />
     <ClInclude Include="NA_Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
